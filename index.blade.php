@@ -8,30 +8,39 @@
 </head>
 <body>
 <p>{{$txt}}</p>
-  <form action="/hello" method="POST">
-    <table>
-      @csrf
-      <tr>
-        
-        <th>name:</th>
-        <td>
-          <input type="text" name="name">
-        </td>
-      </tr>
-      <tr>
-        <th>email:</th>
-        <td>
-          <input type="email" name="email">
-        </td>
-      </tr>
-      <tr>
-        <th>age:</th>
-        <td>
-          <input type="text" name="age">
-        </td>
-      </tr>
-    </table>
-    <input type="submit" value="送信">
-  </form>
+@if (count($errors) > 0)
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  @endif
+
+
+<form action="/hello" method="post">
+<table>
+@csrf
+<tr>
+<th>name:</th>
+<td>
+<input type="text" name="name">
+</td>
+</tr>
+<tr>
+<th>mail:</th>
+<td>
+<input type="text" name="mail">
+</td>
+</tr>
+<tr>
+<th>age:</th>
+<td>
+<input type="text" name="age">
+</td>
+</tr>
+</table>
+<input type="submit">
+</form>
+
 </body>
 </html>
